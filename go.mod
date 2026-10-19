@@ -1,6 +1,6 @@
 module github.com/containers/podman/v4
 
-go 1.17
+go 1.25.0
 
 require (
 	github.com/BurntSushi/toml v1.2.1
@@ -51,20 +51,20 @@ require (
 	github.com/openshift/imagebuilder v1.2.4-0.20220711175835-4151e43600df
 	github.com/rootless-containers/rootlesskit v1.1.0
 	github.com/sirupsen/logrus v1.9.0
-	github.com/spf13/cobra v1.6.1
-	github.com/spf13/pflag v1.0.5
-	github.com/stretchr/testify v1.8.1
+	github.com/spf13/cobra v1.10.2
+	github.com/spf13/pflag v1.0.10
+	github.com/stretchr/testify v1.11.1
 	github.com/syndtr/gocapability v0.0.0-20200815063812-42c35b437635
 	github.com/uber/jaeger-client-go v2.30.0+incompatible
 	github.com/ulikunitz/xz v0.5.10
 	github.com/vbauerster/mpb/v7 v7.5.3
 	github.com/vishvananda/netlink v1.1.1-0.20220115184804-dd687eb2f2d4
-	go.etcd.io/bbolt v1.3.6
-	golang.org/x/net v0.2.0
-	golang.org/x/sync v0.1.0
-	golang.org/x/sys v0.2.0
-	golang.org/x/term v0.2.0
-	golang.org/x/text v0.4.0
+	go.etcd.io/bbolt v1.5.0
+	golang.org/x/net v0.43.0
+	golang.org/x/sync v0.20.0
+	golang.org/x/sys v0.45.0
+	golang.org/x/term v0.34.0
+	golang.org/x/text v0.28.0
 	google.golang.org/protobuf v1.28.1
 	gopkg.in/inf.v0 v0.9.1
 	gopkg.in/yaml.v3 v3.0.1
@@ -92,12 +92,12 @@ require (
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/google/go-cmp v0.5.9 // indirect
+	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/google/go-containerregistry v0.12.1 // indirect
 	github.com/google/go-intervals v0.0.2 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
-	github.com/inconshreveable/mousetrap v1.0.1 // indirect
+	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jinzhu/copier v0.3.5 // indirect
 	github.com/klauspost/compress v1.15.12 // indirect
 	github.com/klauspost/pgzip v1.2.6-0.20220930104621-17e8dac29df8 // indirect
@@ -132,9 +132,9 @@ require (
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
 	go.mozilla.org/pkcs7 v0.0.0-20210826202110-33d05740a352 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	golang.org/x/crypto v0.3.0 // indirect
-	golang.org/x/mod v0.6.0 // indirect
-	golang.org/x/tools v0.2.0 // indirect
+	golang.org/x/crypto v0.41.0 // indirect
+	golang.org/x/mod v0.27.0 // indirect
+	golang.org/x/tools v0.36.0 // indirect
 	google.golang.org/genproto v0.0.0-20221111202108-142d8a6fa32e // indirect
 	google.golang.org/grpc v1.50.1 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
