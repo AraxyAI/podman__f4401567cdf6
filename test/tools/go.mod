@@ -1,12 +1,12 @@
 module github.com/containers/podman/test/tools
 
-go 1.17
+go 1.26.0
 
 require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.2
 	github.com/onsi/ginkgo v1.16.5
 	github.com/vbatts/git-validation v1.1.0
-	golang.org/x/tools v0.3.0
+	golang.org/x/tools v0.52.0
 )
 
 require (
@@ -17,7 +17,9 @@ require (
 	github.com/nxadm/tail v1.4.8 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sirupsen/logrus v1.4.1 // indirect
-	golang.org/x/mod v0.7.0 // indirect
-	golang.org/x/sys v0.2.0 // indirect
+	golang.org/x/mod v0.42.0 // indirect
+	golang.org/x/sync v0.24.0 // indirect
+	golang.org/x/sys v0.49.0 // indirect
+	golang.org/x/telemetry v0.0.0-20261009151841-97e8ea77aa2a // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 )
