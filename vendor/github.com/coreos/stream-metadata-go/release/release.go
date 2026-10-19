@@ -9,7 +9,7 @@ import (
 )
 
 // Index models the release index:
-// https://github.com/coreos/fedora-coreos-tracker/tree/master/metadata/release-index
+// https://github.com/coreos/fedora-coreos-tracker/tree/main/metadata/release-index
 type Index struct {
 	Note     string         `json:"note"` // used to note to users not to consume the release metadata index
 	Releases []IndexRelease `json:"releases"`
@@ -19,15 +19,22 @@ type Index struct {
 
 // IndexRelease is a "release pointer" from a release index
 type IndexRelease struct {
-	Commits     []IndexReleaseCommit `json:"commits"`
-	Version     string               `json:"version"`
-	MetadataURL string               `json:"metadata"`
+	Commits     []IndexReleaseCommit   `json:"commits,omitempty"`
+	OciImages   []IndexReleaseOciImage `json:"oci-images,omitempty"`
+	Version     string                 `json:"version"`
+	MetadataURL string                 `json:"metadata"`
 }
 
 // IndexReleaseCommit describes an ostree commit plus architecture
 type IndexReleaseCommit struct {
 	Architecture string `json:"architecture"`
 	Checksum     string `json:"checksum"`
+}
+
+// IndexReleaseOciImages describes a pullspec plus architecture
+type IndexReleaseOciImage struct {
+	ContainerImage
+	Architecture string `json:"architecture"`
 }
 
 // Release contains details from release.json
@@ -45,30 +52,49 @@ type Metadata struct {
 
 // Arch release details
 type Arch struct {
-	Commit               string               `json:"commit"`
+	Commit               string               `json:"commit,omitempty"`
+	OciImage             *ContainerImage      `json:"oci-image,omitempty"`
 	Media                Media                `json:"media"`
 	RHELCoreOSExtensions *relrhcos.Extensions `json:"rhel-coreos-extensions,omitempty"`
 }
 
 // Media contains release details for various platforms
 type Media struct {
-	Aliyun       *PlatformBase `json:"aliyun"`
-	Aws          *PlatformAws  `json:"aws"`
-	Azure        *PlatformBase `json:"azure"`
-	Digitalocean *PlatformBase `json:"digitalocean"`
-	Exoscale     *PlatformBase `json:"exoscale"`
-	Gcp          *PlatformGcp  `json:"gcp"`
-	Ibmcloud     *PlatformBase `json:"ibmcloud"`
-	Metal        *PlatformBase `json:"metal"`
-	Openstack    *PlatformBase `json:"openstack"`
-	Qemu         *PlatformBase `json:"qemu"`
-	Vmware       *PlatformBase `json:"vmware"`
-	Vultr        *PlatformBase `json:"vultr"`
+	Aliyun          *PlatformAliyun   `json:"aliyun"`
+	AppleHV         *PlatformBase     `json:"applehv"`
+	Aws             *PlatformAws      `json:"aws"`
+	Azure           *PlatformBase     `json:"azure"`
+	AzureStack      *PlatformBase     `json:"azurestack"`
+	Digitalocean    *PlatformBase     `json:"digitalocean"`
+	Exoscale        *PlatformBase     `json:"exoscale"`
+	Gcp             *PlatformGcp      `json:"gcp"`
+	Hetzner         *PlatformBase     `json:"hetzner"`
+	HyperV          *PlatformBase     `json:"hyperv"`
+	Ibmcloud        *PlatformIBMCloud `json:"ibmcloud"`
+	KubeVirt        *PlatformKubeVirt `json:"kubevirt"`
+	Metal           *PlatformBase     `json:"metal"`
+	Nutanix         *PlatformBase     `json:"nutanix"`
+	NvidiaBluefield *PlatformBase     `json:"nvidiabluefield"`
+	Openstack       *PlatformBase     `json:"openstack"`
+	OracleCloud     *PlatformBase     `json:"oraclecloud"`
+	PowerVS         *PlatformIBMCloud `json:"powervs"`
+	ProxmoxVE       *PlatformBase     `json:"proxmoxve"`
+	Qemu            *PlatformBase     `json:"qemu"`
+	QemuSecex       *PlatformBase     `json:"qemu-secex"`
+	VirtualBox      *PlatformBase     `json:"virtualbox"`
+	Vmware          *PlatformBase     `json:"vmware"`
+	Vultr           *PlatformBase     `json:"vultr"`
 }
 
 // PlatformBase with no cloud images
 type PlatformBase struct {
 	Artifacts map[string]ImageFormat `json:"artifacts"`
+}
+
+// PlatformAliyun contains Aliyun image information
+type PlatformAliyun struct {
+	PlatformBase
+	Images map[string]CloudImage `json:"images"`
 }
 
 // PlatformAws contains AWS image information
@@ -81,6 +107,18 @@ type PlatformAws struct {
 type PlatformGcp struct {
 	PlatformBase
 	Image *GcpImage `json:"image"`
+}
+
+// PlatformIBMCloud IBMCloud/PowerVS image detail
+type PlatformIBMCloud struct {
+	PlatformBase
+	Images map[string]IBMCloudImage `json:"images"`
+}
+
+// PlatformKubeVirt containerDisk metadata
+type PlatformKubeVirt struct {
+	PlatformBase
+	Image *ContainerImage `json:"image"`
 }
 
 // ImageFormat contains all artifacts for a single OS image
@@ -104,9 +142,23 @@ type CloudImage struct {
 	Image string `json:"image"`
 }
 
+// ContainerImage represents a tagged container image
+type ContainerImage struct {
+	// Preferred way to reference the image, which might be by tag or digest
+	Image     string `json:"image"`
+	DigestRef string `json:"digest-ref"`
+}
+
 // GcpImage represents a GCP cloud image
 type GcpImage struct {
-	Project string `json:"project,omitempty"`
+	Project string `json:"project"`
 	Family  string `json:"family,omitempty"`
-	Name    string `json:"name,omitempty"`
+	Name    string `json:"name"`
+}
+
+// IBMCloudImage represents an IBMCloud/PowerVS cloud object - which is an ova image for PowerVS and a qcow for IBMCloud in the cloud object storage bucket
+type IBMCloudImage struct {
+	Object string `json:"object"`
+	Bucket string `json:"bucket"`
+	Url    string `json:"url"`
 }

@@ -19,7 +19,7 @@ require (
 	github.com/containers/psgo v1.8.0
 	github.com/containers/storage v1.44.1-0.20221121144727-71fd3e87df7a
 	github.com/coreos/go-systemd/v22 v22.5.0
-	github.com/coreos/stream-metadata-go v0.0.0-20210225230131-70edb9eb47b3
+	github.com/coreos/stream-metadata-go v0.4.11
 	github.com/cyphar/filepath-securejoin v0.2.3
 	github.com/digitalocean/go-qemu v0.0.0-20210326154740-ac9e0b687001
 	github.com/docker/docker v20.10.21+incompatible
@@ -53,7 +53,7 @@ require (
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/pflag v1.0.5
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.10.0
 	github.com/syndtr/gocapability v0.0.0-20200815063812-42c35b437635
 	github.com/uber/jaeger-client-go v2.30.0+incompatible
 	github.com/ulikunitz/xz v0.5.10
